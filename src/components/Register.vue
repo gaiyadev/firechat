@@ -3,64 +3,66 @@
     <v-row class="text-center">
       <v-col cols="2"></v-col>
       <v-col cols="8">
-        <v-card v-if="error">
-          <alert @dismissed="onDismissed" :text="error.message"></alert>
-        </v-card>
-        <h2>Sign up for Meetup</h2>
-        <v-form @submit.prevent="onSignup" ref="form" class="mt-4" v-model="valid" lazy-validation>
-          <!-- <v-text-field v-model="name" :counter="10" :rules="nameRules" label="Name" required></v-text-field> -->
-
-          <v-text-field
-            v-model="email"
-            outlined
-            shaped
-            error-count="2"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :rules="passwordRules"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="show1 = !show1"
-            outlined
-            shaped
-            :type="show1 ? 'text' : 'password'"
-            label="Password"
-            error-count="4"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="confirmPassword"
-            error-count="2"
-            :rules="confirmPasswordRules "
-            :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="show2 = !show2"
-            :type="show2 ? 'text' : 'password'"
-            outlined
-            shaped
-            label="Confirm Password"
-            required
-          ></v-text-field>
-
-          <v-btn
-            shaped
-            block
-            x-large
-            type="submit"
-            :disabled="!valid"
-            :loading="loading"
-            color="primary"
-            class="mr-4"
-            @click="validate"
+        <v-card elevation="11" class="pt-10">
+          <h2 class="primary--text">Register</h2>
+          <v-form
+            @submit.prevent="onSignup"
+            ref="form"
+            class="mt-10 mb-6 pr-8 pl-8 pb-8 pt-4"
+            v-model="valid"
+            lazy-validation
           >
-            Sign up
-            <span style="display: none" class="custom-loader">
-              <v-icon light>cached</v-icon>
-            </span>
-          </v-btn>
-        </v-form>
+            <v-text-field
+              v-model="email"
+              outlined
+              shaped
+              error-count="2"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
+              outlined
+              shaped
+              :type="show1 ? 'text' : 'password'"
+              label="Password"
+              error-count="4"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="confirmPassword"
+              error-count="2"
+              :rules="confirmPasswordRules "
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show2 = !show2"
+              :type="show2 ? 'text' : 'password'"
+              outlined
+              shaped
+              label="Confirm Password"
+              required
+            ></v-text-field>
+
+            <v-btn
+              shaped
+              block
+              x-large
+              type="submit"
+              :disabled="!valid"
+              color="primary"
+              class="mr-4"
+              @click="validate"
+            >
+              Sign up
+              <span style="display: none" class="custom-loader">
+                <v-icon light>cached</v-icon>
+              </span>
+            </v-btn>
+          </v-form>
+        </v-card>
       </v-col>
       <v-col cols="2"></v-col>
     </v-row>
@@ -98,48 +100,12 @@ export default {
       ]
     };
   },
-
-  computed: {
-    // comparePassword() {
-    //   this.valid;
-    //   return this.password !== this.confirmPassword
-    //     ? "Password do not match"
-    //     : "";
-    // },
-    user() {
-      return this.$store.getters.user;
-    },
-    error() {
-      return this.$store.getters.error;
-    },
-    loading() {
-      return this.$store.getters.loading;
-    }
-  },
-  watch: {
-    user(value) {
-      if (value !== null && value !== undefined) {
-        this.$router.push("/");
-      }
-    }
-  },
-
   methods: {
     validate() {
       this.$refs.form.validate();
     },
     onSignup() {
-      this.$store
-        .dispatch("signUserUps", {
-          email: this.email,
-          password: this.password
-        })
-        .then(this.$toast.success("Account created succesfully"))
-        .catch(error => console.log(error));
-    },
-    onDismissed() {
-      this.$store.dispatch("clearError");
-      console.log("onDismissed");
+        console.log('sign up');
     }
   }
 };

@@ -1,61 +1,123 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="2"></v-col>
-      <v-col cols="8">
-        <v-card elevation="7">
-          <v-toolbar flat color="primary" dark>
-            <v-toolbar-title>User Authentication</v-toolbar-title>
-          </v-toolbar>
-          <v-tabs vertical>
-            <v-tab>
-              <v-icon left>mdi-account</v-icon>Login
-            </v-tab>
-            <v-tab>
-              <v-icon left>mdi-lock</v-icon>Register
-            </v-tab>
-            <v-tab>
-              <v-icon left>mdi-access-point</v-icon>Option 3
-            </v-tab>
-            <v-tab-item>
-              <v-card flat>
-                <Login></Login>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <Register></Register>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text>
-                  <p>Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.</p>
-
-                  <p
-                    class="mb-0"
-                  >Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.</p>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs>
-        </v-card>
+    <v-row class="text-center">
+      <v-col cols="12">
+        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
       </v-col>
-      <v-col cols="2"></v-col>
+
+      <v-col class="mb-4">
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to Vuetify</h1>
+
+        <p class="subheading font-weight-regular">
+          For help and collaboration with other Vuetify developers,
+          <br />please join our online
+          <a
+            href="https://community.vuetifyjs.com"
+            target="_blank"
+          >Discord Community</a>
+        </p>
+      </v-col>
+
+      <v-col class="mb-5" cols="12">
+        <h2 class="headline font-weight-bold mb-3">What's next?</h2>
+
+        <v-row justify="center">
+          <a
+            v-for="(next, i) in whatsNext"
+            :key="i"
+            :href="next.href"
+            class="subheading mx-3"
+            target="_blank"
+          >{{ next.text }}</a>
+        </v-row>
+      </v-col>
+
+      <v-col class="mb-5" cols="12">
+        <h2 class="headline font-weight-bold mb-3">Important Links</h2>
+
+        <v-row justify="center">
+          <a
+            v-for="(link, i) in importantLinks"
+            :key="i"
+            :href="link.href"
+            class="subheading mx-3"
+            target="_blank"
+          >{{ link.text }}</a>
+        </v-row>
+      </v-col>
+
+      <v-col class="mb-5" cols="12">
+        <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
+
+        <v-row justify="center">
+          <a
+            v-for="(eco, i) in ecosystem"
+            :key="i"
+            :href="eco.href"
+            class="subheading mx-3"
+            target="_blank"
+          >{{ eco.text }}</a>
+        </v-row>
+      </v-col>
     </v-row>
   </v-container>
 </template>
-<script>
-import Login from "../components/Login";
-import Register from "../components/Register";
 
+<script>
 export default {
-  components: {
-    Login,
-    Register
-  },
-  data() {
-    return {};
-  }
+  name: "HelloWorld",
+
+  data: () => ({
+    ecosystem: [
+      {
+        text: "vuetify-loader",
+        href: "https://github.com/vuetifyjs/vuetify-loader"
+      },
+      {
+        text: "github",
+        href: "https://github.com/vuetifyjs/vuetify"
+      },
+      {
+        text: "awesome-vuetify",
+        href: "https://github.com/vuetifyjs/awesome-vuetify"
+      }
+    ],
+    importantLinks: [
+      {
+        text: "Documentation",
+        href: "https://vuetifyjs.com"
+      },
+      {
+        text: "Chat",
+        href: "https://community.vuetifyjs.com"
+      },
+      {
+        text: "Made with Vuetify",
+        href: "https://madewithvuejs.com/vuetify"
+      },
+      {
+        text: "Twitter",
+        href: "https://twitter.com/vuetifyjs"
+      },
+      {
+        text: "Articles",
+        href: "https://medium.com/vuetify"
+      }
+    ],
+    whatsNext: [
+      {
+        text: "Explore components",
+        href: "https://vuetifyjs.com/components/api-explorer"
+      },
+      {
+        text: "Select a layout",
+        href: "https://vuetifyjs.com/layout/pre-defined"
+      },
+      {
+        text: "Frequently Asked Questions",
+        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
+      }
+    ]
+  })
 };
 </script>
