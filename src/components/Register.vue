@@ -105,7 +105,15 @@ export default {
       this.$refs.form.validate();
     },
     onSignup() {
-        console.log('sign up');
+      this.$store.dispatch("signUpUsers", {
+        email: this.email,
+        password: this.password
+      }).then(() => {
+          this.$toast.success("Account created succesfully");
+          this.$router.push("/login");
+      }).catch(error => {
+          console.log(error);
+      });
     }
   }
 };

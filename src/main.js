@@ -5,9 +5,18 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import * as firebase from "firebase";
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 Vue.config.productionTip = false;
 
+const options = {
+  // You can set your default options here
+  timeout: 3500,
+  draggable: true,
+  closeOnClick: false
+};
+Vue.use(Toast, options);
 //Your web app's Firebase configuration
 var firebaseConfig = {
   apiKey: "AIzaSyCpAqtZAAE8BwQ2LDB8gnrVDI7_5ETdagk",
