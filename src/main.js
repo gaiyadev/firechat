@@ -7,6 +7,7 @@ import vuetify from "./plugins/vuetify";
 import * as firebase from "firebase";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import alertComp from "./components/Alert.vue";
 
 Vue.config.productionTip = false;
 
@@ -16,6 +17,8 @@ const options = {
   draggable: true,
   closeOnClick: false
 };
+Vue.component("alert", alertComp);
+
 Vue.use(Toast, options);
 //Your web app's Firebase configuration
 var firebaseConfig = {

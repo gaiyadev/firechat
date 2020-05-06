@@ -2,7 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import * as firebase from "firebase";
 
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -16,7 +15,7 @@ export default new Vuex.Store({
       state.user = payload;
     },
     isLoading(state, payload) {
-      state.laoding = payload
+      state.loading = payload
     },
     isError(state, payload) {
       state.error = payload;
@@ -40,7 +39,21 @@ export default new Vuex.Store({
         commit("isError", error);
         console.log(error);
       });
-    }
+    },
+    clearError({ commit }) {
+      commit("clearError");
+    },
   },
-  modules: {}
+  modules: {},
+  getters: {
+    user(state) {
+      return state.user;
+    },
+    error(state) {
+      return state.error;
+    },
+    loading(state) {
+      return state.loading;
+    }
+  }
 });

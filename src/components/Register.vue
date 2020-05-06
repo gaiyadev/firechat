@@ -3,6 +3,9 @@
     <v-row class="text-center">
       <v-col cols="2"></v-col>
       <v-col cols="8">
+        <v-card v-if="error" elevation="11">
+          <alert @dismissed="onDismissed" :text="error.message"></alert>
+        </v-card>
         <v-card elevation="11" class="pt-10">
           <h2 class="primary--text">Register</h2>
           <v-form
@@ -14,6 +17,7 @@
           >
             <v-text-field
               v-model="email"
+              color="primary"
               outlined
               shaped
               error-count="2"
@@ -53,6 +57,7 @@
               type="submit"
               :disabled="!valid"
               color="primary"
+              :loading="loading"
               class="mr-4"
               @click="validate"
             >
@@ -100,20 +105,46 @@ export default {
       ]
     };
   },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+    loading() {
+      return this.$store.getters.loading;
+    },
+    user() {
+      return this.$store.getters.user;
+    }
+  },
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$toast.success("Account created succesfully");
+
+        this.$router.push("/login");
+      }
+    }
+  },
   methods: {
     validate() {
       this.$refs.form.validate();
     },
     onSignup() {
-      this.$store.dispatch("signUpUsers", {
-        email: this.email,
-        password: this.password
-      }).then(() => {
-          this.$toast.success("Account created succesfully");
-          this.$router.push("/login");
-      }).catch(error => {
+      this.$store
+        .dispatch("signUpUsers", {
+          email: this.email,
+          password: this.password
+        })
+        .then(() => {
+          //this.$toast.success("Account created succesfully");
+        })
+        .catch(error => {
           console.log(error);
-      });
+        });
+    },
+    onDismissed() {
+      this.$store.dispatch("clearError");
+      console.log("onDismissed");
     }
   }
 };
