@@ -3,6 +3,9 @@
     <v-row class="text-center">
       <v-col cols="2"></v-col>
       <v-col cols="8">
+        <v-card v-if="error" elevation="11">
+          <alert @dismissed="onDismissed" :text="error.message"></alert>
+        </v-card>
         <v-card elevation="11" class="pt-10">
           <h2 class="primary--text">Login</h2>
           <v-form
@@ -14,6 +17,7 @@
           >
             <v-text-field
               v-model="email"
+              append-icon="mail_outline"
               outlined
               shaped
               :rules="emailRules"
@@ -37,11 +41,12 @@
               type="submit"
               block
               :disabled="!valid"
+              :loading="loading"
               color="primary"
               class="mr-4"
               @click="validate"
             >
-              Sign in
+              Login
               <span style="display: none" class="custom-loader">
                 <v-icon light>cached</v-icon>
               </span>
@@ -71,10 +76,39 @@ export default {
       v => (v && v.length >= 8) || "Password must be less than 8 characters"
     ]
   }),
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+    loading() {
+      return this.$store.getters.loading;
+    },
+    user() {
+      return this.$store.getters.user;
+    }
+  },
+  watch: {
+    user(value) {
+      if (value !== null && value !== undefined) {
+        this.$toast.success("Welocome");
 
+        this.$router.push("/username");
+      }
+    }
+  },
   methods: {
     validate() {
       this.$refs.form.validate();
+    },
+    onLogin() {
+      this.$store.dispatch("signInUser", {
+        email: this.email,
+        password: this.password
+      });
+    },
+    onDismissed() {
+      this.$store.dispatch("clearError");
+      console.log("onDismissed");
     }
   }
 };

@@ -17,9 +17,9 @@
           >
             <v-text-field
               v-model="email"
-              color="primary"
               outlined
               shaped
+              append-icon="mail_outline"
               error-count="2"
               :rules="emailRules"
               label="E-mail"

@@ -40,10 +40,28 @@ export default new Vuex.Store({
         console.log(error);
       });
     },
-    clearError({ commit }) {
+    signInUser({ commit }, payload) {
+      commit("isLoading", true);
       commit("clearError");
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
+        commit("isLoading", false);
+        const newUser = {
+          id: user.user.uid,
+        };
+        commit("setUser", newUser);
+      }).catch(error => {
+        commit("isLoading", false);
+        commit("isError", error);
+        console.log(error);
+      });
     },
+    autoLoginUser({ commit }, payload) {
+      commit("setUser", {
+        id: payload.uid,
+      });
+    }
   },
+
   modules: {},
   getters: {
     user(state) {

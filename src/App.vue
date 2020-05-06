@@ -35,11 +35,15 @@
       <v-spacer></v-spacer>
       <v-btn to="/register" text class="hidden-xs-only">
         <span class="mr-2">Register</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon>supervisor_account</v-icon>
       </v-btn>
       <v-btn text to="/login" class="hidden-xs-only">
         <span class="mr-2">Login</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        <v-icon>perm_identity</v-icon>
+      </v-btn>
+      <v-btn text class="hidden-xs-only">
+        <span class="mr-2">Logout</span>
+        <v-icon>exit_to_app</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -64,8 +68,9 @@ export default {
     drawer: false,
     items: [
       { title: "Home", icon: "dashboard", link: "/" },
-      { title: "Login", icon: "question_answer", link: "/login" },
-      { title: "Register", icon: "question_answer", link: "/register" }
+      { title: "Login", icon: "perm_identity", link: "/login" },
+      { title: "Register", icon: "supervisor_account", link: "/register" },
+      { title: "Logout", icon: "exit_to_app", link: "/" }
     ]
     //
   })
