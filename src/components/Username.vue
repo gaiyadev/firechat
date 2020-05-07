@@ -66,7 +66,11 @@ export default {
     },
     onStartChat() {
       if (this.name) {
-        this.$router.push({ name: "Chat", path: "/chat", params: this.name });
+        this.$router.push({
+          name: "Chat",
+          path: "/chat",
+          params: { name: this.name }
+        });
       }
     }
   }

@@ -6,6 +6,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import * as firebase from "firebase";
 import Toast from "vue-toastification";
+import VueChatScroll from 'vue-chat-scroll'
 import "vue-toastification/dist/index.css";
 import alertComp from "./components/Alert.vue";
 
@@ -18,6 +19,8 @@ const options = {
   closeOnClick: false
 };
 Vue.component("alert", alertComp);
+Vue.use(VueChatScroll)
+
 
 Vue.use(Toast, options);
 //Your web app's Firebase configuration
