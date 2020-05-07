@@ -9,6 +9,7 @@ import Toast from "vue-toastification";
 import VueChatScroll from 'vue-chat-scroll'
 import "vue-toastification/dist/index.css";
 import alertComp from "./components/Alert.vue";
+import VuePageTransition from 'vue-page-transition';
 
 Vue.config.productionTip = false;
 
@@ -19,7 +20,9 @@ const options = {
   closeOnClick: false
 };
 Vue.component("alert", alertComp);
-Vue.use(VueChatScroll)
+Vue.use(VueChatScroll);
+Vue.use(VuePageTransition);
+
 
 
 Vue.use(Toast, options);

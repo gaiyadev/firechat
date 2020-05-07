@@ -61,7 +61,9 @@
 
     <v-content>
       <!-- <HelloWorld /> -->
-      <router-view></router-view>
+      <vue-page-transition name="fade-in-right">
+        <router-view></router-view>
+      </vue-page-transition>
     </v-content>
     <v-footer color="primary" padless>
       <v-row justify="center" no-gutters>

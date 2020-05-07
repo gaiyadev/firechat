@@ -65,6 +65,9 @@ export default new Vuex.Store({
         commit("setUser", null);
       }).catch(error => console.log(error));
     },
+    clearError({ commit }) {
+      commit("clearError");
+    },
   },
 
   modules: {},

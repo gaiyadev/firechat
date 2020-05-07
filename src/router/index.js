@@ -10,24 +10,29 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: { transition: 'zoom' }
+
   },
   {
     path: "/register",
     name: "Register",
-    component: Register
+    component: Register,
+    meta: { transition: 'zoom' }
   },
   {
     path: "/login",
     name: "Login",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue")
+      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+    meta: { transition: 'zoom' }
   },
   {
     path: "/username",
     name: "Username",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Username.vue"),
+    meta: { transition: 'zoom' },
     beforeEnter: authGuard
 
   },
@@ -36,6 +41,7 @@ const routes = [
     name: "Chat",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Chat.vue"),
+    meta: { transition: 'zoom' },
     beforeEnter: authGuard
   }
 ];
