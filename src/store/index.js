@@ -46,7 +46,7 @@ export default new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
         commit("isLoading", false);
         const newUser = {
-          id: user.user.uid,
+          id: user.user.uid
         };
         commit("setUser", newUser);
       }).catch(error => {
@@ -57,7 +57,7 @@ export default new Vuex.Store({
     },
     autoLoginUser({ commit }, payload) {
       commit("setUser", {
-        id: payload.uid,
+        id: payload.uid
       });
     },
     logoutUser({ commit }) {

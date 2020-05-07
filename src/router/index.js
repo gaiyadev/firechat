@@ -4,7 +4,6 @@ import Register from "../views/Register.vue";
 import Home from "../views/Home.vue";
 import authGuard from "./auth-guard";
 
-
 Vue.use(VueRouter);
 
 const routes = [
