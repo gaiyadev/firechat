@@ -21,7 +21,7 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="userIsAuthenticated">
+        <v-list-item v-if="userIsAuthenticated" @click="logout">
           <v-list-item-icon>
             <v-icon>exit_to_app</v-icon>
           </v-list-item-icon>

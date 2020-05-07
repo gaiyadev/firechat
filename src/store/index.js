@@ -26,8 +26,8 @@ export default new Vuex.Store({
     isError(state, payload) {
       state.error = payload;
     },
-    clearError(state) {
-      state.error = null;
+    clearError(state, payload) {
+      state.error = payload;
     },
     setMessage(state, payload) {
       state.messages = payload;
