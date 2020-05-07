@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary elevation="9">
       <v-list-item>
         <v-list-item-avatar>
           <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
@@ -32,8 +32,8 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-app-bar-nav-icon>
+    <v-app-bar app color="primary" dark elevation="9">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-md-and-up "></v-app-bar-nav-icon>
 
       <div class="d-flex align-center">
         <h2>
@@ -41,15 +41,15 @@
         </h2>
       </div>
       <v-spacer></v-spacer>
-      <v-btn to="/register" text class="hidden-xs-only" v-if="!userIsAuthenticated">
+      <v-btn to="/register" text class="hidden-xs-only d-md-none .d-lg-flex" v-if="!userIsAuthenticated">
         <span class="mr-2">Register</span>
         <v-icon>supervisor_account</v-icon>
       </v-btn>
-      <v-btn text to="/login" class="hidden-xs-only" v-if="!userIsAuthenticated">
+      <v-btn text to="/login" class="hidden-xs-only d-md-none .d-lg-flex" v-if="!userIsAuthenticated">
         <span class="mr-2">Login</span>
         <v-icon>perm_identity</v-icon>
       </v-btn>
-      <v-btn text to="/login" class="hidden-xs-only" v-if="userIsAuthenticated">
+      <v-btn text to="/login" class="hidden-xs-only d-md-none .d-lg-flex" v-if="userIsAuthenticated">
         <span class="mr-2">Chat</span>
         <v-icon>chat_bubble_outline</v-icon>
       </v-btn>
@@ -101,12 +101,9 @@ export default {
         }
       ];
       if (this.userIsAuthenticated) {
-        items = [{ title: "Home", 
-        icon: "dashboard", link: "/" 
-        },
-        { title: "Chat", icon: "chat_bubble_outline",
-         link: "/"
-         }
+        items = [
+          { title: "Home", icon: "dashboard", link: "/" },
+          { title: "Chat", icon: "chat_bubble_outline", link: "/" }
         ];
       }
       return items;

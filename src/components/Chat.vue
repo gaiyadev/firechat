@@ -5,6 +5,9 @@
         <v-col cols="2"></v-col>
         <v-col cols="8">
           <v-card elevation="11" class="pt-10">
+            <v-chip class="ma-2" color="green" text-color="white">Secondary</v-chip>
+            <v-chip class="ma-7 float-md-right pr-9" color="primary">Primary</v-chip>
+
             <v-form class="mt-10 mb-6 pr-8 pl-8 pb-8 pt-4">
               <v-text-field
                 v-model="message"

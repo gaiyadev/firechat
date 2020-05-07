@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Register from "../views/Register.vue";
 import Home from "../views/Home.vue";
+import authGuard from "./auth-guard";
+
 
 Vue.use(VueRouter);
 
@@ -26,13 +28,16 @@ const routes = [
     path: "/username",
     name: "Username",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Username.vue")
+      import(/* webpackChunkName: "about" */ "../views/Username.vue"),
+    beforeEnter: authGuard
+
   },
   {
     path: "/chat",
     name: "Chat",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Chat.vue")
+      import(/* webpackChunkName: "about" */ "../views/Chat.vue"),
+    beforeEnter: authGuard
   }
 ];
 
