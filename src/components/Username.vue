@@ -5,7 +5,7 @@
       <v-col cols="8">
         <h2 class="primary--text">Chat Username</h2>
         <v-form
-          @submit.prevent="onLogin"
+          @submit.prevent="onStartChat"
           ref="form"
           v-model="valid"
           lazy-validation
@@ -14,6 +14,7 @@
           <v-text-field
             v-model="name"
             outlined
+            error-count="4"
             shaped
             :counter="10"
             :rules="nameRules"
@@ -29,7 +30,7 @@
             class="mr-4"
             @click="validate"
           >
-            Sign in
+            Start Chat
             <span style="display: none" class="custom-loader">
               <v-icon light>cached</v-icon>
             </span>
@@ -50,13 +51,19 @@ export default {
     name: "",
     nameRules: [
       v => !!v || "Name is required",
-      v => (v && v.length >= 8) || "Name must be less than 8 characters"
+      v => (v && v.length >= 4) || "Name must be less than 4 characters",
+      v => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character"
     ]
   }),
 
   methods: {
     validate() {
       this.$refs.form.validate();
+    },
+    onStartChat() {
+      if (this.name) {
+        this.$router.push({ name: "Home", params: this.name });
+      }
     }
   }
 };

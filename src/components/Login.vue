@@ -19,6 +19,7 @@
               v-model="email"
               append-icon="mail_outline"
               outlined
+              error-count="2"
               shaped
               :rules="emailRules"
               label="E-mail"
