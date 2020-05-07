@@ -27,7 +27,6 @@
 
 <script>
 export default {
-  // props: ["name"],
   data() {
     return {
       password: "Password",
@@ -70,7 +69,6 @@ export default {
       this.resetIcon();
       this.clearMessage();
       // 09079451911.
-      //console.log("chat here");
     },
 
     clearMessage() {

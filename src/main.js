@@ -19,11 +19,10 @@ const options = {
   draggable: true,
   closeOnClick: false
 };
+
 Vue.component("alert", alertComp);
 Vue.use(VueChatScroll);
 Vue.use(VuePageTransition);
-
-
 
 Vue.use(Toast, options);
 //Your web app's Firebase configuration
@@ -43,7 +42,6 @@ new Vue({
   vuetify,
   created() {
     firebase.initializeApp(firebaseConfig);
-  //  firebase.firestore().settings({ timestampsInSnapshots: true });
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.$store.dispatch("autoLoginUser", user);
