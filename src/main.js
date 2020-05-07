@@ -43,6 +43,7 @@ new Vue({
   vuetify,
   created() {
     firebase.initializeApp(firebaseConfig);
+    firebase.firestore().settings({ timestampsInSnapshots: true });
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.$store.dispatch("autoLoginUser", user);

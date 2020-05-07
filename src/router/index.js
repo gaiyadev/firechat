@@ -32,7 +32,7 @@ const routes = [
     name: "Username",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Username.vue"),
-    meta: { transition: 'zoom' },
+    // meta: { transition: 'zoom' },
     beforeEnter: authGuard
 
   },
@@ -42,7 +42,8 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Chat.vue"),
     meta: { transition: 'zoom' },
-    beforeEnter: authGuard
+    beforeEnter: authGuard,
+    props: true
   }
 ];
 
