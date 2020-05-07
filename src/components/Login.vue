@@ -7,7 +7,7 @@
           <alert @dismissed="onDismissed" :text="error.message"></alert>
         </v-card>
         <v-card elevation="11" class="pt-10">
-          <h2 class="primary--text">Login</h2>
+          <h2 class="primary--text">{{ title }}</h2>
           <v-form
             @submit.prevent="onLogin"
             ref="form"
@@ -63,6 +63,7 @@
 <script>
 export default {
   data: () => ({
+    title: "Login",
     valid: true,
     show1: false,
     show2: false,
@@ -92,7 +93,6 @@ export default {
     user(value) {
       if (value !== null && value !== undefined) {
         this.$toast.success("Welocome");
-
         this.$router.push("/username");
       }
     }

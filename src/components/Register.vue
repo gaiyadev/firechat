@@ -7,7 +7,7 @@
           <alert @dismissed="onDismissed" :text="error.message"></alert>
         </v-card>
         <v-card elevation="11" class="pt-10">
-          <h2 class="primary--text">Register</h2>
+          <h2 class="primary--text">{{ title }}</h2>
           <v-form
             @submit.prevent="onSignup"
             ref="form"
@@ -78,6 +78,7 @@
 export default {
   data() {
     return {
+      title: "Register",
       valid: true,
       show1: false,
       show2: false,

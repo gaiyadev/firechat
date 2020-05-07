@@ -49,6 +49,10 @@
         <span class="mr-2">Login</span>
         <v-icon>perm_identity</v-icon>
       </v-btn>
+      <v-btn text to="/login" class="hidden-xs-only" v-if="userIsAuthenticated">
+        <span class="mr-2">Chat</span>
+        <v-icon>chat_bubble_outline</v-icon>
+      </v-btn>
       <v-btn text class="hidden-xs-only" v-if="userIsAuthenticated" @click="logout">
         <span class="mr-2">Logout</span>
         <v-icon>exit_to_app</v-icon>
@@ -97,7 +101,13 @@ export default {
         }
       ];
       if (this.userIsAuthenticated) {
-        items = [{ title: "Home", icon: "dashboard", link: "/" }];
+        items = [{ title: "Home", 
+        icon: "dashboard", link: "/" 
+        },
+        { title: "Chat", icon: "chat_bubble_outline",
+         link: "/"
+         }
+        ];
       }
       return items;
     }
