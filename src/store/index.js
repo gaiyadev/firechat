@@ -8,7 +8,13 @@ export default new Vuex.Store({
   state: {
     user: null,
     loading: false,
-    error: null
+    error: null,
+    messages: {
+      id: null,
+      name: null,
+      message: null,
+      timestamp: null
+    }
   },
   mutations: {
     setUser(state, payload) {
@@ -22,6 +28,9 @@ export default new Vuex.Store({
     },
     clearError(state) {
       state.error = null;
+    },
+    setMessage(state, payload) {
+      state.messages = payload;
     }
   },
   actions: {
@@ -68,6 +77,27 @@ export default new Vuex.Store({
     clearError({ commit }) {
       commit("clearError");
     },
+    startChat({ commit }, payload) {
+      commit("isLoading", true);
+      firebase.firestore().collection("messages").add({
+        name: payload.name,
+        message: payload.message,
+        timestamp: new Date().toISOString().substr(0, 1000)
+      }).then(data => {
+        commit("isLoading", false);
+        const newMessage = {
+          id: data.id,
+          name: data.name,
+          message: data.message,
+          timestamp: data.timestamp
+        };
+        commit("setMessage", newMessage);
+        console.log(data);
+      }).catch(error => {
+        commit("isLoading", false);
+        console.log(error);
+      });
+    }
   },
 
   modules: {},

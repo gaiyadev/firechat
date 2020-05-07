@@ -47,6 +47,7 @@
 
 <script>
 export default {
+  // props: ["name"],
   data: () => ({
     title: "Chat Username",
     valid: true,
