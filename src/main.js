@@ -47,6 +47,11 @@ new Vue({
         this.$store.dispatch("autoLoginUser", user);
       }
     });
+    // this.$store.dispatch("loadedMessages").then(() => {
+    //   // console.log(success);
+    // }).catch(err => {
+    //   console.log(err);
+    // });
   },
   render: h => h(App)
 }).$mount("#app");

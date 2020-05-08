@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import * as firebase from "firebase";
+//import moment from 'moment';
+
 
 Vue.use(Vuex);
 
@@ -31,7 +33,10 @@ export default new Vuex.Store({
     },
     setMessage(state, payload) {
       state.messages = payload;
-    }
+    },
+    // setLoadedMessages(state, payload) {
+    //   state.messages = payload;
+    // },
   },
   actions: {
     signUpUsers({ commit }, payload) {
@@ -82,7 +87,7 @@ export default new Vuex.Store({
       firebase.firestore().collection("messages").add({
         name: payload.name,
         message: payload.message,
-        timestamp: new Date().toISOString().substr(0, 1000)
+        timestamp: Date.now()
       }).then(data => {
         commit("isLoading", false);
         const newMessage = {
@@ -97,7 +102,28 @@ export default new Vuex.Store({
         commit("isLoading", false);
         console.log(error);
       });
-    }
+    },
+    // loadedMessages({ commit }) {
+    //   firebase.firestore().collection("messages").orderBy("timestamp").onSnapshot(snapshot => {
+    //     snapshot.docChanges().forEach(change => {
+    //       const message = [];
+    //       // const obj = data.val();
+    //       if ((change.type == "added")) {
+    //         let doc = change.doc;
+    //         let newChat = {
+    //           id: doc.id,
+    //           name: doc.data().name,
+    //           message: doc.data().message,
+    //           timestamp: moment(doc.data().timestamp).format('LTS')
+    //         };
+    //         message.push(newChat);
+    //         //console.log(message);
+    //         // console.log(newChat);
+    //         commit("setLoadedMessages", newChat);
+    //       }
+    //     });
+    //   });
+    // }
   },
 
   modules: {},
@@ -110,6 +136,9 @@ export default new Vuex.Store({
     },
     loading(state) {
       return state.loading;
-    }
+    },
+    // loadedMessages(state) {
+    //   return state.messages;
+    // }
   }
 });
