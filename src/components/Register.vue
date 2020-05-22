@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="2"></v-col>
-      <v-col cols="8">
+      <v-col cols="12" sm="12" md="12" >
         <v-card v-if="error" elevation="11">
           <alert @dismissed="onDismissed" :text="error.message"></alert>
         </v-card>
